@@ -58,7 +58,8 @@ jobs:
         run: |
           hugo \
             --minify \
-            --baseURL ${{ steps.pages.outputs.base_url }}
+            --baseURL https://perplex.awa.lan/
+#           --baseURL ${{ steps.pages.outputs.base_url }}
       - name: Run Pagefind
         run: npm_config_yes=true npx pagefind
       - name: Upload artifact
@@ -67,13 +68,13 @@ jobs:
           path: ./public
 
   # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+# deploy:
+#   environment:
+#     name: github-pages
+#     url: ${{ steps.deployment.outputs.page_url }}
+#   runs-on: ubuntu-latest
+#   needs: build
+#   steps:
+#     - name: Deploy to GitHub Pages
+#       id: deployment
+#       uses: actions/deploy-pages@v2
